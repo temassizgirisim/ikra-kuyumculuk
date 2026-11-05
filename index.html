@@ -1,0 +1,162 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İkra Kuyumculuk - Ödeme Bilgileri</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 selection:bg-emerald-500 selection:text-white">
+
+    <!-- Top Spacer / Header Brand -->
+    <div class="w-full max-w-md pt-6 pb-2 text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 mb-3 border border-emerald-500/20 shadow-lg shadow-emerald-950/50">
+            <i class="fa-solid fa-gem text-2xl"></i>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight text-white">İkra Kuyumculuk</h1>
+        <p class="text-xs text-emerald-400 font-medium tracking-wide mt-0.5">GÜVENLİ ÖDEME EKRANI</p>
+    </div>
+
+    <!-- Main Card Container -->
+    <main class="w-full max-w-md my-auto space-y-4">
+        
+        <!-- Status / Header Card -->
+        <div class="bg-[#131b2e] border border-slate-800/80 rounded-2xl p-6 text-center shadow-xl shadow-black/40 relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl pointer-events-none"></div>
+            
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-400 border border-emerald-500/30">
+                <i class="fa-solid fa-check text-lg"></i>
+            </div>
+            
+            <h2 class="text-lg font-bold text-white mb-1">Ödeme Bilgileri</h2>
+            <p class="text-xs text-slate-400 leading-relaxed px-2">
+                Lütfen aşağıdaki bilgileri kullanarak ödemenizi gerçekleştirin.
+            </p>
+        </div>
+
+        <!-- Details Box -->
+        <div class="bg-[#131b2e] border border-slate-800/80 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl shadow-black/40">
+            
+            <!-- Alıcı Ünvanı -->
+            <div class="bg-[#0b0f19]/70 border border-slate-800/60 rounded-xl p-3.5 flex items-center justify-between gap-3 transition hover:border-slate-700">
+                <div class="min-w-0 flex-1">
+                    <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase mb-1">ALICI ADI SOYADI / ÜNVANI</span>
+                    <p id="unvanText" class="text-xs sm:text-sm font-semibold text-white tracking-wide truncate">İKRA SARRAFİYE KUYUMCULUK SANAYİ VE TİCARET LİMİTED ŞİRKETİ</p>
+                </div>
+                <button onclick="copyToClipboard('unvanText', this)" class="shrink-0 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition active:scale-95">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Kopyala</span>
+                </button>
+            </div>
+
+            <!-- IBAN Numarası -->
+            <div class="bg-[#0b0f19]/70 border border-slate-800/60 rounded-xl p-3.5 flex items-center justify-between gap-3 transition hover:border-slate-700">
+                <div class="min-w-0 flex-1">
+                    <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase mb-1">IBAN NUMARASI</span>
+                    <p id="ibanText" class="text-sm sm:text-base font-mono font-bold text-emerald-400 tracking-wider truncate">TR43 0001 5001 5800 7366 2657 89</p>
+                </div>
+                <button onclick="copyToClipboard('ibanText', this)" class="shrink-0 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition active:scale-95">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Kopyala</span>
+                </button>
+            </div>
+
+            <!-- Açıklama Alanı & Talimat -->
+            <div class="bg-amber-500/5 border border-amber-500/20 rounded-xl p-3.5 space-y-2">
+                <div class="flex items-start gap-2.5 text-amber-300 text-xs font-medium">
+                    <i class="fa-solid fa-triangle-exclamation mt-0.5 shrink-0 text-amber-400"></i>
+                    <span>Açıklama kısmına lütfen T.C.'nizi girmeyi unutmayınız.</span>
+                </div>
+                <div class="bg-[#0b0f19]/80 border border-amber-500/30 rounded-lg p-3 flex items-center justify-between gap-3">
+                    <div class="min-w-0 flex-1">
+                        <span class="block text-[9px] font-semibold tracking-wider text-amber-400/80 uppercase mb-0.5">ÖNERİLEN AÇIKLAMA METNİ</span>
+                        <p id="descText" class="text-xs sm:text-sm font-mono font-medium text-white truncate">ALTINIMI ELDEN ALDIM TC: </p>
+                    </div>
+                    <button onclick="copyToClipboard('descText', this)" class="shrink-0 bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition active:scale-95">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Kopyala</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer Notice -->
+    <footer class="w-full max-w-md py-4 text-center text-xs text-slate-500 px-4 leading-relaxed">
+        Ödemeyi yaptıktan sonra işletme yetkilisine ekrandan gösterebilirsiniz.
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-5 py-2.5 rounded-xl shadow-2xl text-xs font-semibold tracking-wide opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2 z-50">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastText">Kopyalandı!</span>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        function copyToClipboard(elementId, btnElement) {
+            const text = document.getElementById(elementId).innerText;
+            
+            // Fallback clipboard method safe for iframe / restrictions
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';  // Avoid scrolling to bottom
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast('Panoya kopyalandı!');
+                    
+                    // Visual feedback on button
+                    const originalHTML = btnElement.innerHTML;
+                    btnElement.innerHTML = '<i class="fa-solid fa-check"></i> <span>Kopyalandı</span>';
+                    btnElement.classList.remove('bg-emerald-500/10', 'text-emerald-400');
+                    btnElement.classList.add('bg-emerald-500', 'text-white');
+                    
+                    setTimeout(() => {
+                        btnElement.innerHTML = originalHTML;
+                        btnElement.classList.remove('bg-emerald-500', 'text-white');
+                        btnElement.classList.add('bg-emerald-500/10', 'text-emerald-400');
+                    }, 2000);
+                } else {
+                    showToast('Kopyalanamadı, lütfen manuel seçin.');
+                }
+            } catch (err) {
+                showToast('Kopyalama hatası!');
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toastText');
+            toastText.innerText = message;
+            toast.classList.remove('opacity-0', 'translate-y-2');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-2');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
+```
