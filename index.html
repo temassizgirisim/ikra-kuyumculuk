@@ -3,159 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İkra Kuyumculuk - Ödeme Bilgileri</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>İkra Kuyumculuk - Güvenli Ödeme Ekranı</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
+            background-color: #0b111e;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+        .container {
+            width: 100%;
+            max-width: 440px;
+            background: #131b2e;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        .logo-box {
+            width: 64px;
+            height: 64px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 16px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .logo-box svg {
+            width: 32px;
+            height: 32px;
+            fill: #10b981;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+        .subtitle {
+            font-size: 13px;
+            color: #10b981;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+        .card {
+            background: #1a253c;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .card-label {
+            font-size: 11px;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .card-value {
+            font-size: 15px;
+            color: #f8fafc;
+            font-weight: 500;
+            word-break: break-all;
+            margin-bottom: 12px;
+        }
+        .copy-btn {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+        .copy-btn:active {
+            background: rgba(16, 185, 129, 0.2);
+            transform: scale(0.98);
+        }
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            text-align: left;
+            font-size: 13px;
+            color: #fbbf24;
+            line-height: 1.4;
+        }
+        .footer-note {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 16px;
+            line-height: 1.4;
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #10b981;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between p-4 selection:bg-emerald-500 selection:text-white">
+<body>
 
-    <!-- Top Spacer / Header Brand -->
-    <div class="w-full max-w-md pt-6 pb-2 text-center">
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 mb-3 border border-emerald-500/20 shadow-lg shadow-emerald-950/50">
-            <i class="fa-solid fa-gem text-2xl"></i>
+    <div class="container">
+        <div class="logo-box">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         </div>
-        <h1 class="text-xl font-bold tracking-tight text-white">İkra Kuyumculuk</h1>
-        <p class="text-xs text-emerald-400 font-medium tracking-wide mt-0.5">GÜVENLİ ÖDEME EKRANI</p>
+        <h1>İkra Kuyumculuk</h1>
+        <div class="subtitle">Güvenli Ödeme Ekranı</div>
+
+        <div class="card">
+            <div class="card-label">Alıcı Adı / Unvanı</div>
+            <div class="card-value">İKRA SARRAFİYE KUYUMCULUK SANAYİ VE TİCARET LİMİTED ŞİRKETİ</div>
+            <button class="copy-btn" onclick="copyText('İKRA SARRAFİYE KUYUMCULUK SANAYİ VE TİCARET LİMİTED ŞİRKETİ', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Unvanı Kopyala
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="card-label">IBAN Numarası</div>
+            <div class="card-value" style="font-family: monospace; font-size: 16px; letter-spacing: 0.5px;">TR43 0001 5001 5800 7366 2657 89</div>
+            <button class="copy-btn" onclick="copyText('TR430001500158007366265789', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                IBAN'ı Kopyala
+            </button>
+        </div>
+
+        <div class="warning-box">
+            ⚠️ <b>Açıklama Uyarısı:</b> Açıklama kısmına lütfen T.C.'nizi girmeyi unutmayınız.
+        </div>
+
+        <div class="card">
+            <div class="card-label">Önerilen Açıklama Metni</div>
+            <div class="card-value">ALTINIMI ELDEN ALDIM TC: </div>
+            <button class="copy-btn" onclick="copyText('ALTINIMI ELDEN ALDIM TC: ', this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Açıklamayı Kopyala
+            </button>
+        </div>
+
+        <div class="footer-note">
+            Ödemeyi yaptıktan sonra dekontu işletme yetkilisine ekrandan gösterebilirsiniz.
+        </div>
     </div>
 
-    <!-- Main Card Container -->
-    <main class="w-full max-w-md my-auto space-y-4">
-        
-        <!-- Status / Header Card -->
-        <div class="bg-[#131b2e] border border-slate-800/80 rounded-2xl p-6 text-center shadow-xl shadow-black/40 relative overflow-hidden">
-            <div class="absolute -top-12 -right-12 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl pointer-events-none"></div>
-            
-            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-400 border border-emerald-500/30">
-                <i class="fa-solid fa-check text-lg"></i>
-            </div>
-            
-            <h2 class="text-lg font-bold text-white mb-1">Ödeme Bilgileri</h2>
-            <p class="text-xs text-slate-400 leading-relaxed px-2">
-                Lütfen aşağıdaki bilgileri kullanarak ödemenizi gerçekleştirin.
-            </p>
-        </div>
+    <div id="toast" class="toast">Panoya kopyalandı!</div>
 
-        <!-- Details Box -->
-        <div class="bg-[#131b2e] border border-slate-800/80 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl shadow-black/40">
-            
-            <!-- Alıcı Ünvanı -->
-            <div class="bg-[#0b0f19]/70 border border-slate-800/60 rounded-xl p-3.5 flex items-center justify-between gap-3 transition hover:border-slate-700">
-                <div class="min-w-0 flex-1">
-                    <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase mb-1">ALICI ADI SOYADI / ÜNVANI</span>
-                    <p id="unvanText" class="text-xs sm:text-sm font-semibold text-white tracking-wide truncate">İKRA SARRAFİYE KUYUMCULUK SANAYİ VE TİCARET LİMİTED ŞİRKETİ</p>
-                </div>
-                <button onclick="copyToClipboard('unvanText', this)" class="shrink-0 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition active:scale-95">
-                    <i class="fa-regular fa-copy"></i>
-                    <span>Kopyala</span>
-                </button>
-            </div>
-
-            <!-- IBAN Numarası -->
-            <div class="bg-[#0b0f19]/70 border border-slate-800/60 rounded-xl p-3.5 flex items-center justify-between gap-3 transition hover:border-slate-700">
-                <div class="min-w-0 flex-1">
-                    <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase mb-1">IBAN NUMARASI</span>
-                    <p id="ibanText" class="text-sm sm:text-base font-mono font-bold text-emerald-400 tracking-wider truncate">TR43 0001 5001 5800 7366 2657 89</p>
-                </div>
-                <button onclick="copyToClipboard('ibanText', this)" class="shrink-0 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition active:scale-95">
-                    <i class="fa-regular fa-copy"></i>
-                    <span>Kopyala</span>
-                </button>
-            </div>
-
-            <!-- Açıklama Alanı & Talimat -->
-            <div class="bg-amber-500/5 border border-amber-500/20 rounded-xl p-3.5 space-y-2">
-                <div class="flex items-start gap-2.5 text-amber-300 text-xs font-medium">
-                    <i class="fa-solid fa-triangle-exclamation mt-0.5 shrink-0 text-amber-400"></i>
-                    <span>Açıklama kısmına lütfen T.C.'nizi girmeyi unutmayınız.</span>
-                </div>
-                <div class="bg-[#0b0f19]/80 border border-amber-500/30 rounded-lg p-3 flex items-center justify-between gap-3">
-                    <div class="min-w-0 flex-1">
-                        <span class="block text-[9px] font-semibold tracking-wider text-amber-400/80 uppercase mb-0.5">ÖNERİLEN AÇIKLAMA METNİ</span>
-                        <p id="descText" class="text-xs sm:text-sm font-mono font-medium text-white truncate">ALTINIMI ELDEN ALDIM TC: </p>
-                    </div>
-                    <button onclick="copyToClipboard('descText', this)" class="shrink-0 bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition active:scale-95">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>Kopyala</span>
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- Footer Notice -->
-    <footer class="w-full max-w-md py-4 text-center text-xs text-slate-500 px-4 leading-relaxed">
-        Ödemeyi yaptıktan sonra işletme yetkilisine ekrandan gösterebilirsiniz.
-    </footer>
-
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-5 py-2.5 rounded-xl shadow-2xl text-xs font-semibold tracking-wide opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2 z-50">
-        <i class="fa-solid fa-circle-check"></i>
-        <span id="toastText">Kopyalandı!</span>
-    </div>
-
-    <!-- Script Logic -->
     <script>
-        function copyToClipboard(elementId, btnElement) {
-            const text = document.getElementById(elementId).innerText;
-            
-            // Fallback clipboard method safe for iframe / restrictions
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            textarea.style.position = 'fixed';  // Avoid scrolling to bottom
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    showToast('Panoya kopyalandı!');
-                    
-                    // Visual feedback on button
-                    const originalHTML = btnElement.innerHTML;
-                    btnElement.innerHTML = '<i class="fa-solid fa-check"></i> <span>Kopyalandı</span>';
-                    btnElement.classList.remove('bg-emerald-500/10', 'text-emerald-400');
-                    btnElement.classList.add('bg-emerald-500', 'text-white');
-                    
-                    setTimeout(() => {
-                        btnElement.innerHTML = originalHTML;
-                        btnElement.classList.remove('bg-emerald-500', 'text-white');
-                        btnElement.classList.add('bg-emerald-500/10', 'text-emerald-400');
-                    }, 2000);
-                } else {
-                    showToast('Kopyalanamadı, lütfen manuel seçin.');
-                }
-            } catch (err) {
-                showToast('Kopyalama hatası!');
-            }
-            
-            document.body.removeChild(textarea);
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '✓ Kopyalandı';
+                btn.style.background = '#10b981';
+                btn.style.color = '#ffffff';
+                
+                showToast();
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = 'rgba(16, 185, 129, 0.1)';
+                    btn.style.color = '#10b981';
+                }, 2000);
+            });
         }
 
-        function showToast(message) {
+        function showToast() {
             const toast = document.getElementById('toast');
-            const toastText = document.getElementById('toastText');
-            toastText.innerText = message;
-            toast.classList.remove('opacity-0', 'translate-y-2');
-            toast.classList.add('opacity-100', 'translate-y-0');
-            
+            toast.classList.add('show');
             setTimeout(() => {
-                toast.classList.remove('opacity-100', 'translate-y-0');
-                toast.classList.add('opacity-0', 'translate-y-2');
-            }, 2500);
+                toast.classList.remove('show');
+            }, 2000);
         }
     </script>
 </body>
 </html>
-```
